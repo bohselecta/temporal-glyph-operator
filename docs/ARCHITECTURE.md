@@ -57,12 +57,16 @@ See [Performance Budgets](perf.md) for detailed performance requirements and mea
 - Maintain ≥80% statement coverage in packages
 - Performance budgets enforced via CI
 
+## Geometry Status
+
+**Current Implementation:** The viewer currently renders a provisional torus layout with 14 base triangles to support addressing, overlay, and camera focus. The public APIs are geometry-agnostic. Swap `torus14.ts` with a Császár polyhedron implementation to achieve the exact topology without changing consumers.
+
 ## Future Roadmap
 
-### Phase 1: Geometry & Camera (M2)
-- Implement Császár polyhedron with Loop subdivision
-- Add `focusAddr(addr)` camera control
-- Throughput-based emissive overlay
+### Phase 1: Geometry & Camera (M2) ✅
+- ✅ Implement provisional torus14 base faces with Loop subdivision
+- ✅ Add `focusAddr(addr)` camera control
+- ✅ Throughput-based emissive overlay
 
 ### Phase 2: Heatmap & Telemetry (M3)
 - Live heatmap visualization

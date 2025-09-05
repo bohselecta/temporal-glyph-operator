@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 
-type Pinned = { addr: string; kernel: string; result: unknown; t: number };
-
 export function PinnedDrawer({ observer, onJump }: { observer: any; onJump: (addr: string)=>void }) {
-  const [pins, setPins] = useState<Pinned[]>([]);
+  const [pins, setPins] = useState<{ addr: string; kernel: string; result: unknown; t: number }[]>([]);
   
   useEffect(() => {
     observer.on("pinned", ({ addr, payload }: any) => {
@@ -18,20 +16,10 @@ export function PinnedDrawer({ observer, onJump }: { observer: any; onJump: (add
         {pins.map((p, i) => (
           <li key={i} className="bg-zinc-800/60 rounded-xl p-2">
             <div className="text-xs text-zinc-400">{new Date(p.t).toLocaleTimeString()} • {p.kernel}</div>
-            <button 
-              className="text-cyan-300 hover:underline" 
-              onClick={() => onJump(p.addr)}
-            >
-              {p.addr}
-            </button>
-            <pre className="text-xs text-zinc-200 overflow-x-auto mt-1">
-              {JSON.stringify(p.result, null, 2)}
-            </pre>
+            <button className="text-cyan-300 hover:underline" onClick={() => onJump(p.addr)}>{p.addr}</button>
+            <pre className="text-xs text-zinc-200 overflow-x-auto mt-1">{JSON.stringify(p.result)}</pre>
           </li>
         ))}
-        {pins.length === 0 && (
-          <li className="text-zinc-500 italic text-sm">No pinned results yet</li>
-        )}
       </ul>
     </div>
   );
