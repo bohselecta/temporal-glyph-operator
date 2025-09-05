@@ -1,9 +1,5 @@
 # Temporal Glyph Operator (TGO)
 
-✨ **Made with love, fractals, and a beat that just won't quit.** 
-
-## 🎶 Intro
-
 I could be the one,  
 your new obsession,  
 it's all fractals in my head,  
