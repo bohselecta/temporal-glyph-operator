@@ -10,7 +10,7 @@ export function encodePathToIndex(faceIndex: number, path: number[], levels: num
   
   // For each subdivision level, multiply by 4 and add the child index
   for (let level = 0; level < levels && level < path.length; level++) {
-    currentIndex = currentIndex * 4 + path[level];
+    currentIndex = currentIndex * 4 + (path[level] || 0);
   }
   
   return currentIndex;

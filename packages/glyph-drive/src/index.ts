@@ -9,7 +9,7 @@ export interface GlyphDrive {
 // Addressing & Geometry exports
 export type { Address } from "./addressing/hierarchy";
 export { encodeAddress, parseAddress, jobIdToBaseFace, faceIdToLabel } from "./addressing/hierarchy";
-export type { Vec3, Tri } from "./geometry";
+export type { Vec3, Tri, ParsedAddress } from "./geometry";
 export { CSASZAR_FACES, CSASZAR_VERTICES, triangleAt, centroid, faceCentroid, faceNormal } from "./geometry";
 
 // Example in-memory impl sketch (replace with your real one)

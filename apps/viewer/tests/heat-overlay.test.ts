@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { ramp } from "@/overlay/HeatOverlay";
+import { ramp } from "../../packages/viewer/src/overlay/HeatOverlay";
 
 describe("ramp", () => {
   it("monotone brightness", () => {

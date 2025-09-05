@@ -66,6 +66,12 @@ See [Performance Budgets](perf.md) for detailed performance requirements and mea
 - Exports stream `pinned` events with `addr` and payload; importer reattaches pins to Drive.
 - CI guards ensure encodePathToIndex logic remains consistent (address→face index mapping).
 
+### Fractal Tape (M4)
+- Values are JSON-packed, converted to base-4 glyph digits, and optionally shuffled by a deterministic PRNG keyed by (seed, base address, tick, length).  
+- The resulting digits are appended as `:c=d` segments, increasing the address depth.
+- Decoding reverses the shuffle and unpacks JSON.
+- The tape is pure; Drive persistence happens via the finalize→tape adapter.
+
 ## Future Roadmap
 
 ### Phase 1: Geometry & Camera (M2) ✅
@@ -80,6 +86,13 @@ See [Performance Budgets](perf.md) for detailed performance requirements and mea
 - ✅ Deterministic replay capabilities with LDJSON import
 - ✅ Hotkeys for navigation (J, [, ])
 - ✅ Path-to-index encoding for subdivision levels
+
+### Phase 3: Fractal Tape Backend (M4) ✅
+- ✅ Deterministic, geometry-addressable tape encoding
+- ✅ Base-4 glyph path extension of Császár addressing
+- ✅ JSON value encoding with deterministic shuffle
+- ✅ Tape adapter binding finalize→tape→drive→observer
+- ✅ Comprehensive roundtrip and base4 tests
 
 ### Phase 3: Split Readiness (M5)
 - API freeze and documentation

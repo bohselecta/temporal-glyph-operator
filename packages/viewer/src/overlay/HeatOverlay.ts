@@ -54,7 +54,7 @@ export class HeatOverlay {
 
   /** Bump heat level for a face and update colors */
   bump(faceIndex: number, amount = 1.0) {
-    this.heatLevels[faceIndex] = Math.min(10, this.heatLevels[faceIndex] + amount);
+    this.heatLevels[faceIndex] = Math.min(10, (this.heatLevels[faceIndex] || 0) + amount);
     this.updateFaceColors(faceIndex);
   }
 
@@ -67,7 +67,7 @@ export class HeatOverlay {
     const colorAttr = geo.getAttribute("color") as THREE.BufferAttribute;
     const colors = colorAttr.array as Float32Array;
     
-    const heat = this.heatLevels[faceIndex];
+    const heat = this.heatLevels[faceIndex] || 0;
     const color = ramp(heat);
     
     // Set all 3 vertices to the same color
@@ -83,8 +83,9 @@ export class HeatOverlay {
   /** Decay all heat levels */
   decay(factor = 0.92) {
     for (let i = 0; i < this.heatLevels.length; i++) {
-      this.heatLevels[i] *= factor;
-      if (this.heatLevels[i] < 0.01) {
+      const current = this.heatLevels[i] || 0;
+      this.heatLevels[i] = current * factor;
+      if (this.heatLevels[i]! < 0.01) {
         this.heatLevels[i] = 0;
       }
       this.updateFaceColors(i);
@@ -100,7 +101,7 @@ export class HeatOverlay {
   stopDecay() {
     if (this.decayInterval) {
       clearInterval(this.decayInterval);
-      this.decayInterval = undefined;
+      this.decayInterval = undefined as any;
     }
   }
 

@@ -33,7 +33,7 @@ export function encodeAddress(face: FaceId, path: ChildIndex[]): Address {
 
 export function parseAddress(addr: Address): ParsedAddress {
   const parts = addr.split(":");
-  const face = labelToFaceId(parts[0]);
+  const face = labelToFaceId(parts[0]!);
   const depth = Number(parts[1] || 0) | 0;
   const path = parts.slice(2).map((p) => Number(p.split("=")[1] || 0) as ChildIndex);
   return { face, depth, path };

@@ -64,7 +64,8 @@ export function buildEdgeSet(faces: Tri[]): Set<string> {
 /** Centroid of a triangle face. */
 export function faceCentroid(faceIndex: number): Vec3 {
   const f = CSASZAR_FACES[faceIndex];
-  const [a, b, c] = f.map(i => CSASZAR_VERTICES[i]);
+  if (!f) throw new Error(`Invalid face index: ${faceIndex}`);
+  const [a, b, c] = f.map(i => CSASZAR_VERTICES[i]!);
   return [
     (a[0] + b[0] + c[0]) / 3,
     (a[1] + b[1] + c[1]) / 3,
@@ -75,7 +76,8 @@ export function faceCentroid(faceIndex: number): Vec3 {
 /** Normal vector of a triangle face (right-hand rule). */
 export function faceNormal(faceIndex: number): Vec3 {
   const f = CSASZAR_FACES[faceIndex];
-  const [a, b, c] = f.map(i => CSASZAR_VERTICES[i]);
+  if (!f) throw new Error(`Invalid face index: ${faceIndex}`);
+  const [a, b, c] = f.map(i => CSASZAR_VERTICES[i]!);
   const u = [b[0] - a[0], b[1] - a[1], b[2] - a[2]] as const;
   const v = [c[0] - a[0], c[1] - a[1], c[2] - a[2]] as const;
   const n = [
@@ -120,7 +122,11 @@ function mid(a: Vec3, b: Vec3): Vec3 {
 /** Follow address path to get the triangle at a given depth. */
 export function triangleAt(addr: ParsedAddress, base: Tri[]): Tri {
   let tri = base[addr.face];
-  for (const c of addr.path) tri = loopSubdivide(tri)[c];
+  if (!tri) throw new Error(`Invalid face index: ${addr.face}`);
+  for (const c of addr.path) {
+    const subdivided = loopSubdivide(tri);
+    tri = subdivided[c]!;
+  }
   return tri;
 }
 
