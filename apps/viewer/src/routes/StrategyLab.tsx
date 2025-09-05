@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { CSVButton } from "../components/CSVButton";
 
 interface Run {
   t: number;
@@ -86,15 +87,21 @@ export function StrategyLab() {
   const [runs, setRuns] = useState<Run[]>(mockRuns);
   const [baselineStrategy, setBaselineStrategy] = useState("uniform");
   const [bucketMs, setBucketMs] = useState(2000);
+  const [filter, setFilter] = useState("");
   
-  const series = bucketize(runs, bucketMs);
+  // Filter runs based on search
+  const filteredRuns = runs.filter(run => 
+    run.strategy.toLowerCase().includes(filter.toLowerCase())
+  );
+  
+  const filteredSeries = bucketize(filteredRuns, bucketMs);
   const strategies = Array.from(new Set(runs.map(r => r.strategy)));
   
   // Calculate divergences
   const divergences: Record<string, DivergencePoint[]> = {};
-  const baseline = series.find(s => s.strategy === baselineStrategy);
+  const baseline = filteredSeries.find(s => s.strategy === baselineStrategy);
   if (baseline) {
-    for (const s of series) {
+    for (const s of filteredSeries) {
       if (s.strategy !== baselineStrategy) {
         divergences[s.strategy] = divergenceMSE(s, baseline);
       }
@@ -102,7 +109,7 @@ export function StrategyLab() {
   }
   
   // Format data for charts
-  const chartData = series.flatMap(s => 
+  const chartData = filteredSeries.flatMap(s => 
     s.points.map(p => ({
       time: new Date(p.t).toLocaleTimeString(),
       timestamp: p.t,
@@ -131,6 +138,25 @@ export function StrategyLab() {
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Strategy Lab</h1>
         
+        {/* Controls */}
+        <div className="flex gap-2 items-center mb-6">
+          <input 
+            className="px-3 py-2 rounded bg-zinc-800 text-zinc-200" 
+            placeholder="Filter by strategy/kernel" 
+            value={filter} 
+            onChange={e => setFilter(e.target.value)} 
+          />
+          <label className="text-zinc-300 text-sm">Baseline</label>
+          <select 
+            className="px-2 py-2 rounded bg-zinc-800 text-zinc-200" 
+            value={baselineStrategy} 
+            onChange={e => setBaselineStrategy(e.target.value)}
+          >
+            {strategies.map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+          <CSVButton rows={chartData} filename={`means_${Date.now()}.csv`} />
+        </div>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="bg-zinc-800 rounded-lg p-4">
             <h2 className="text-xl font-semibold mb-4">Strategy Means</h2>
@@ -141,6 +167,7 @@ export function StrategyLab() {
                   <XAxis dataKey="time" stroke="#9ca3af" />
                   <YAxis stroke="#9ca3af" />
                   <Tooltip 
+                    formatter={(v: any, name: any) => [typeof v === 'number' ? v.toFixed(6) : v, name]}
                     contentStyle={{ 
                       backgroundColor: "#1f2937", 
                       border: "1px solid #374151",
@@ -184,6 +211,7 @@ export function StrategyLab() {
                   <XAxis dataKey="time" stroke="#9ca3af" />
                   <YAxis stroke="#9ca3af" />
                   <Tooltip 
+                    formatter={(v: any, name: any) => [typeof v === 'number' ? v.toFixed(6) : v, name]}
                     contentStyle={{ 
                       backgroundColor: "#1f2937", 
                       border: "1px solid #374151",
@@ -203,6 +231,9 @@ export function StrategyLab() {
                   ))}
                 </LineChart>
               </ResponsiveContainer>
+            </div>
+            <div className="mt-2">
+              <CSVButton rows={divergenceData} filename={`divergence_${Date.now()}.csv`} />
             </div>
           </div>
         </div>

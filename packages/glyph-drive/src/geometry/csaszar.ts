@@ -111,19 +111,15 @@ export function loopSubdivide(tri: Tri): Tri[] {
   const c = tri[2]!;
   const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a);
   return [
-    [a, ab, ca], // 0
-    [ab, b, bc], // 1
-    [ca, bc, c], // 2
-    [ab, bc, ca] // 3 (central)
+    [a, ab, ca] as Tri, // 0
+    [ab, b, bc] as Tri, // 1
+    [ca, bc, c] as Tri, // 2
+    [ab, bc, ca] as Tri // 3 (central)
   ];
 }
 
-function mid(a: Vec3, b: Vec3): Vec3 {
-  return [
-    (a[0] + b[0]) / 2,
-    (a[1] + b[1]) / 2,
-    (a[2] + b[2]) / 2,
-  ] as const;
+function mid(a: number, b: number): number {
+  return (a + b) / 2;
 }
 
 /** Follow address path to get the triangle at a given depth. */
@@ -150,3 +146,36 @@ export function centroid(tri: Tri): Vec3 {
 
 // Re-export types for compatibility
 export type { ParsedAddress } from "../addressing/hierarchy";
+
+// Build indexed geometry for rendering
+export function buildIndexed(levels = 0) {
+  let current = CSASZAR_FACES as Tri[];
+  
+  // Apply subdivision levels
+  for (let i = 0; i < levels; i++) {
+    const next: Tri[] = [];
+    for (const tri of current) {
+      next.push(...loopSubdivide(tri));
+    }
+    current = next;
+  }
+  
+  // Convert triangles to positions and indices
+  const positions: number[] = [];
+  const indices: number[] = [];
+  
+  for (let i = 0; i < current.length; i++) {
+    const tri = current[i];
+    const baseIndex = positions.length / 3;
+    
+    // Add vertices
+    positions.push(tri[0], tri[1], tri[2]);
+    positions.push(tri[3], tri[4], tri[5]);
+    positions.push(tri[6], tri[7], tri[8]);
+    
+    // Add triangle indices
+    indices.push(baseIndex, baseIndex + 1, baseIndex + 2);
+  }
+  
+  return { positions: new Float32Array(positions), indices: new Uint32Array(indices) };
+}
