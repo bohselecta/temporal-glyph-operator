@@ -5,14 +5,12 @@ your new obsession,
 it's all fractals in my head,  
 but I built it with precision.
 
-## 🔥 H-O-T-T-O-G-O
-
 Snap, clap, sample your frames  
 Raise your hands, watch motifs flame  
 Sparkline roll, convergence shows  
 Dance it out—you're hot to go  
 
-**H-O-T-T-O-G-O** → Temporal Glyph Operator  
+**H-O-T-O-T-G-O** → Temporal Glyph Operator  
 You can take it hot-to-go into your research, art, or exploration.
 
 ## 💡 What is TGO?
