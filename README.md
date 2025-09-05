@@ -70,6 +70,9 @@ Watch live:
 - 📊 Divergence vs Baseline (MSE) timeline  
 - 💾 Export CSV data
 - 🔍 Filter strategies and change baseline
+- 🚀 One-click "Run Demo Sweeps" button
+
+> **Pro tip:** The Strategy Lab includes a "🚀 Run Demo Sweeps" button for instant demonstration!
 
 ## ❤️ Made With Love
 

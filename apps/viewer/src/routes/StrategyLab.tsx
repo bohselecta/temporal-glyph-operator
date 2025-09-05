@@ -87,6 +87,34 @@ export function StrategyLab() {
   const [runs, setRuns] = useState<Run[]>(mockRuns);
   const [baselineStrategy, setBaselineStrategy] = useState("uniform");
   const [bucketMs, setBucketMs] = useState(2000);
+
+  const runDemoSweeps = async () => {
+    try {
+      // Dynamic import to avoid bundling issues
+      const { demoSweeps } = await import("@glyph/planner/src/experiments/console");
+      
+      // Mock submit function that simulates data
+      const mockSubmit = async (job: any) => {
+        // Simulate some delay
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Add to runs (this would normally come from the observer)
+        const newRun: Run = {
+          t: Date.now(),
+          strategy: job.payload.meta.strategy,
+          value: job.payload.result
+        };
+        
+        setRuns(prev => [...prev, newRun]);
+      };
+      
+      await demoSweeps(mockSubmit);
+      console.log("Demo sweeps completed!");
+    } catch (error) {
+      console.error("Demo sweeps failed:", error);
+      alert("Demo sweeps failed. Check console for details.");
+    }
+  };
   const [filter, setFilter] = useState("");
   
   // Filter runs based on search
@@ -155,6 +183,12 @@ export function StrategyLab() {
             {strategies.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
           <CSVButton rows={chartData} filename={`means_${Date.now()}.csv`} />
+          <button
+            onClick={runDemoSweeps}
+            className="px-3 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-medium"
+          >
+            🚀 Run Demo Sweeps
+          </button>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
