@@ -361,6 +361,15 @@ function StrategyComparison() {
             <a href="/" className="px-3 py-1.5 rounded-lg bg-[#16162a] border border-[#2a2a3a] hover:bg-[#1a1a30] text-sm">
               ← Back to TGO
             </a>
+            <a href="/calc" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-orange-600 to-red-600 border border-transparent hover:from-orange-700 hover:to-red-700 text-sm font-medium">
+              Calculator
+            </a>
+            <a href="/gallery" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 border border-transparent hover:from-teal-700 hover:to-cyan-700 text-sm font-medium">
+              Gallery
+            </a>
+            <a href="/strategy" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent hover:from-indigo-700 hover:to-purple-700 text-sm font-medium">
+              Strategy Lab
+            </a>
             <button onClick={() => setPaused((p) => !p)} className={`px-3 py-1.5 rounded-lg border text-sm ${paused ? "bg-amber-800/30 border-amber-700" : "bg-[#16162a] border-[#2a2a3a] hover:bg-[#1a1a30]"}`}>
               {paused ? "Resume" : "Pause"}
             </button>

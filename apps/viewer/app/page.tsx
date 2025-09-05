@@ -694,6 +694,15 @@ export default function TemporalGlyphOperatorGUI() {
             <a href="/replay" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-green-600 to-cyan-600 border border-transparent hover:from-green-700 hover:to-cyan-700 text-sm font-medium">
               Session Replay
             </a>
+            <a href="/calc" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-orange-600 to-red-600 border border-transparent hover:from-orange-700 hover:to-red-700 text-sm font-medium">
+              Calculator
+            </a>
+            <a href="/gallery" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 border border-transparent hover:from-teal-700 hover:to-cyan-700 text-sm font-medium">
+              Gallery
+            </a>
+            <a href="/strategy" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent hover:from-indigo-700 hover:to-purple-700 text-sm font-medium">
+              Strategy Lab
+            </a>
             <button onClick={exportLDJSON} className="px-3 py-1.5 rounded-lg text-black border border-gray-300 hover:bg-gray-200 text-sm" style={{backgroundColor: '#f0f0f0'}}>Export LDJSON</button>
             <button onClick={exportCSV} className="px-3 py-1.5 rounded-lg text-black border border-gray-300 hover:bg-gray-200 text-sm" style={{backgroundColor: '#f0f0f0'}}>Export CSV</button>
             <button onClick={() => {

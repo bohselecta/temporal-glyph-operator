@@ -3,8 +3,8 @@ import { InputConsole } from './console/InputConsole';
 import { AnswerPanel } from './console/AnswerPanel';
 import { FractalCanvas } from './viz/FractalCanvas';
 import { PinnedDrawer } from '../PinnedDrawer';
-import { useTGOStore } from "../../../../src/state/tgoStore";
-import { listPins } from "../../../../src/lib/glyphTorus";
+import { useTGOStore } from "../../state/tgoStore";
+import { listPins } from "../../lib/glyphTorus";
 
 export function TGOApp() {
   const { status, metrics, observer } = useTGOStore();

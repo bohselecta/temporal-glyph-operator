@@ -10,6 +10,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    port: 3001, // Use different port from Next.js
+    open: true,
   },
 });

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temporal Glyph Operator</title>
+    <link href="./app/globals.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="tgo-canvas"></div>
+    <script type="module">
+      // Dynamic entry point loading based on URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const entry = urlParams.get('entry') || './src/main-calc.tsx';
+      
+      import(entry).catch(error => {
+        console.error('Failed to load entry point:', entry, error);
+        // Fallback to default entry
+        import('./src/main-calc.tsx');
+      });
+    </script>
+  </body>
+</html>

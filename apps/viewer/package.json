@@ -8,8 +8,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -p 3000",
+    "dev:vite": "vite",
     "build": "next build",
-    "start": "next start -p 3000"
+    "build:vite": "vite build",
+    "start": "next start -p 3000",
+    "preview": "vite preview"
   },
   "dependencies": {
     "next": "^14.2.4",
@@ -23,6 +26,7 @@
     "@glyph/address-mapper": "0.1.0",
     "@glyph/glyph-drive": "0.1.0",
     "zustand": "^5.0.8",
-    "zod": "^4.1.5"
+    "zod": "^4.1.5",
+    "vite": "^5.0.2"
   }
 }
