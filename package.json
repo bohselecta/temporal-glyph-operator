@@ -10,10 +10,12 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run -w packages/glyph-core build && npm run -w packages/vision-kernel build && npm run -w packages/viewport-manager build && npm run -w packages/proxy-operator build && npm run -w packages/report-engine build && npm run -w apps/viewer build",
+    "build": "npm run -w packages/glyph-core build && npm run -w packages/vision-kernel build && npm run -w packages/viewport-manager build && npm run -w packages/proxy-operator build && npm run -w packages/report-engine build && npm run -w packages/adapters build && npm run -w packages/address-mapper build && npm run -w packages/glyph-drive build && npm run -w apps/viewer build",
     "dev": "npm run -w apps/viewer dev",
     "typecheck": "tsc -p tsconfig.base.json --noEmit",
-    "test": "node --test"
+    "test": "node --test",
+    "bench": "npm run -w packages/adapters bench && npm run -w packages/address-mapper bench && npm run -w packages/glyph-drive bench",
+    "labels": "node scripts/bootstrap-labels.mjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.12",

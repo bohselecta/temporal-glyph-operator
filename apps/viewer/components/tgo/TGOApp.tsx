@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { InputConsole } from './console/InputConsole';
 import { AnswerPanel } from './console/AnswerPanel';
 import { FractalCanvas } from './viz/FractalCanvas';
+import { PinnedDrawer } from '../PinnedDrawer';
 import { useTGOStore } from '@/state/tgoStore';
 import { listPins } from '@/lib/glyphTorus';
 
 export function TGOApp() {
-  const { status, metrics } = useTGOStore();
+  const { status, metrics, observer } = useTGOStore();
   const [pins, setPins] = useState<Array<[string, {answer:string|null, bounds:any, when:number}]>>([]);
   const [showPins, setShowPins] = useState(false);
 
   useEffect(() => {
     setPins(listPins());
   }, []);
+
+  const handleJumpToAddress = (addr: string) => {
+    // TODO: Implement camera focus to address
+    console.log('Jumping to address:', addr);
+  };
 
   return (
     <div className="grid lg:grid-cols-[420px_1fr] gap-6">
@@ -58,6 +64,9 @@ export function TGOApp() {
       <section className="rounded border border-[#1e1e2a] overflow-hidden">
         <FractalCanvas />
       </section>
+      
+      {/* Pinned Results Drawer */}
+      <PinnedDrawer observer={observer} onJump={handleJumpToAddress} />
     </div>
   );
 }
