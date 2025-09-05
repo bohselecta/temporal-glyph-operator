@@ -61,6 +61,11 @@ See [Performance Budgets](perf.md) for detailed performance requirements and mea
 
 **Current Implementation:** The viewer now renders the exact Császár polyhedron (7 vertices, 14 triangular faces) with K₇ connectivity. This provides the mathematically precise torus topology with Möbius triangulation. The implementation uses classical vertex coordinates and maintains full compatibility with the addressing hierarchy and camera focus system.
 
+### Deterministic Replay & LDJSON Import
+- Session header includes a determinism block with planner/mapper versions and geometry summary.
+- Exports stream `pinned` events with `addr` and payload; importer reattaches pins to Drive.
+- CI guards ensure encodePathToIndex logic remains consistent (address→face index mapping).
+
 ## Future Roadmap
 
 ### Phase 1: Geometry & Camera (M2) ✅
@@ -69,10 +74,12 @@ See [Performance Budgets](perf.md) for detailed performance requirements and mea
 - ✅ Throughput-based emissive overlay
 - ✅ Loop subdivision for hierarchical addressing
 
-### Phase 2: Heatmap & Telemetry (M3)
-- Live heatmap visualization
-- Metrics panel showing address activity
-- Deterministic replay capabilities
+### Phase 2: Heatmap & Telemetry (M3) ✅
+- ✅ Live heatmap visualization with color ramp (blue→yellow→red)
+- ✅ Per-face heat overlay with decay
+- ✅ Deterministic replay capabilities with LDJSON import
+- ✅ Hotkeys for navigation (J, [, ])
+- ✅ Path-to-index encoding for subdivision levels
 
 ### Phase 3: Split Readiness (M5)
 - API freeze and documentation
