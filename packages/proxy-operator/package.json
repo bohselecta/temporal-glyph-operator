@@ -7,10 +7,12 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": { "build": "tsc -p tsconfig.json" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
   "dependencies": {
     "@glyph/core": "0.1.0",
-    "@glyph/viewport-manager": "0.1.0",
-    "@glyph/report-engine": "0.1.0"
+    "@glyph/viewport-manager": "workspace:*",
+    "@glyph/report-engine": "workspace:*"
   }
 }

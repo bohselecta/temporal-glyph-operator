@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "@glyph/core": "*",
-    "@glyph/address-mapper": "*",
-    "@glyph/glyph-drive": "*"
+    "@glyph/address-mapper": "workspace:*",
+    "@glyph/glyph-drive": "workspace:*"
   }
 }

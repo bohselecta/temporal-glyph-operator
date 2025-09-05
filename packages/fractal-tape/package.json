@@ -14,7 +14,7 @@
     "eventemitter3": "^5.0.1"
   },
   "peerDependencies": {
-    "@glyph/glyph-drive": "*"
+    "@glyph/glyph-drive": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.6.3",

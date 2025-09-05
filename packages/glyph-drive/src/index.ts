@@ -1,6 +1,6 @@
 // Single public surface — no star exports anywhere.
 export type { Address, FaceId, ChildIndex, ParsedAddress } from "./addressing/hierarchy";
-export { encodeAddress, parseAddress, jobIdToBaseFace, faceIdToLabel } from "./addressing/hierarchy";
+export { encodeAddress, parseAddress, jobIdToBaseFace, faceIdToLabel, faceIdToLabel as faceIndexToLabel } from "./addressing/hierarchy";
 export { encodePathToIndex } from "./addressing/path-index";
 export { CSASZAR_VERTICES, CSASZAR_FACES, triangleAt, buildEdgeSet, faceCentroid, faceCentroid as centroid, faceNormal, loopSubdivide, buildIndexed, faceIndexToLabel, labelToFaceIndex } from "./geometry/csaszar";
 export type { Vec3T as Vec3, TriIndices as TriIndex, TriCoords } from "./geometry/types";
