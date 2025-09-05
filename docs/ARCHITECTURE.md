@@ -59,14 +59,15 @@ See [Performance Budgets](perf.md) for detailed performance requirements and mea
 
 ## Geometry Status
 
-**Current Implementation:** The viewer currently renders a provisional torus layout with 14 base triangles to support addressing, overlay, and camera focus. The public APIs are geometry-agnostic. Swap `torus14.ts` with a Császár polyhedron implementation to achieve the exact topology without changing consumers.
+**Current Implementation:** The viewer now renders the exact Császár polyhedron (7 vertices, 14 triangular faces) with K₇ connectivity. This provides the mathematically precise torus topology with Möbius triangulation. The implementation uses classical vertex coordinates and maintains full compatibility with the addressing hierarchy and camera focus system.
 
 ## Future Roadmap
 
 ### Phase 1: Geometry & Camera (M2) ✅
-- ✅ Implement provisional torus14 base faces with Loop subdivision
+- ✅ Implement exact Császár polyhedron (7 vertices, 14 faces, K₇ connectivity)
 - ✅ Add `focusAddr(addr)` camera control
 - ✅ Throughput-based emissive overlay
+- ✅ Loop subdivision for hierarchical addressing
 
 ### Phase 2: Heatmap & Telemetry (M3)
 - Live heatmap visualization

@@ -1,10 +1,11 @@
 import * as THREE from "three";
-import { baseFaces14, triangleAt, centroid } from "@glyph/glyph-drive";
+import { CSASZAR_FACES, CSASZAR_VERTICES, triangleAt, centroid } from "@glyph/glyph-drive";
 import { parseAddress } from "@glyph/glyph-drive";
 
 export class DriveMesh {
   private scene: THREE.Scene;
-  private faces = baseFaces14();
+  private faces = CSASZAR_FACES;
+  private vertices = CSASZAR_VERTICES;
   private faceMeshes: THREE.Mesh[] = [];
 
   constructor(scene: THREE.Scene) {
@@ -17,9 +18,9 @@ export class DriveMesh {
       const tri = this.faces[i];
       const geo = new THREE.BufferGeometry();
       const arr = new Float32Array([
-        tri[0].x, tri[0].y, tri[0].z,
-        tri[1].x, tri[1].y, tri[1].z,
-        tri[2].x, tri[2].y, tri[2].z,
+        this.vertices[tri[0]][0], this.vertices[tri[0]][1], this.vertices[tri[0]][2],
+        this.vertices[tri[1]][0], this.vertices[tri[1]][1], this.vertices[tri[1]][2],
+        this.vertices[tri[2]][0], this.vertices[tri[2]][1], this.vertices[tri[2]][2],
       ]);
       geo.setAttribute("position", new THREE.BufferAttribute(arr, 3));
       geo.computeVertexNormals();
@@ -44,7 +45,7 @@ export class DriveMesh {
     const p = parseAddress(addr);
     const tri = triangleAt(p, this.faces);
     const c = centroid(tri);
-    return new THREE.Vector3(c.x, c.y, c.z);
+    return new THREE.Vector3(c[0], c[1], c[2]);
   }
 
   decay(factor = 0.92) {
