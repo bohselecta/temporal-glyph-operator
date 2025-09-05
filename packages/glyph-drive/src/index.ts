@@ -6,6 +6,7 @@ export interface GlyphDrive {
   attachPayload(addr: Address, payload: Payload): Promise<void> | void;
   emitBadge?(addr: Address, badge: string): void;
 }
+
 export { encodeAddress, parseAddress, jobIdToBaseFace, faceIdToLabel } from "./addressing/hierarchy";
 export type { Vec3, Tri, ParsedAddress } from "./geometry";
 export { 
@@ -20,14 +21,6 @@ export {
   labelToFaceIndex,
   loopSubdivide
 } from "./geometry";
-
-// Re-export all addressing functions
-export { 
-  jobIdToBaseFace, 
-  encodeAddress, 
-  parseAddress, 
-  faceIdToLabel 
-} from "./addressing/hierarchy";
 
 // Re-export key functions
 export { keyPermits, createKey, validateKey } from "./keys";

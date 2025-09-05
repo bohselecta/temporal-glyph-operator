@@ -19,7 +19,7 @@ export function keyPermits(key: Key, addr: Address): boolean {
  * Create a new key with specified mask
  */
 export function createKey(id: string, mask: Address, permissions?: string[]): Key {
-  return { id, mask, permissions };
+  return { id, mask, permissions: permissions ?? [] };
 }
 
 /**

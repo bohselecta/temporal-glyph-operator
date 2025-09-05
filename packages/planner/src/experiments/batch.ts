@@ -41,6 +41,8 @@ function generateCombinations(params: Array<{ name: string; values: any[] }>): a
   if (params.length === 0) return [[]];
   
   const [first, ...rest] = params;
+  if (!first) return [[]];
+  
   const restCombos = generateCombinations(rest);
   const result: any[][][] = [];
   

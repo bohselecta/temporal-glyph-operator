@@ -66,9 +66,9 @@ export function buildEdgeSet(faces: Tri[]): Set<string> {
 /** Centroid of a triangle face. */
 export function faceCentroid(faceIndex: number): Vec3 {
   const f = safe(CSASZAR_FACES, faceIndex);
-  const a = safe(CSASZAR_VERTICES, f[0]);
-  const b = safe(CSASZAR_VERTICES, f[1]);
-  const c = safe(CSASZAR_VERTICES, f[2]);
+  const a = safe(CSASZAR_VERTICES, f[0]!);
+  const b = safe(CSASZAR_VERTICES, f[1]!);
+  const c = safe(CSASZAR_VERTICES, f[2]!);
   return [
     (a[0] + b[0] + c[0]) / 3,
     (a[1] + b[1] + c[1]) / 3,
@@ -79,9 +79,9 @@ export function faceCentroid(faceIndex: number): Vec3 {
 /** Normal vector of a triangle face (right-hand rule). */
 export function faceNormal(faceIndex: number): Vec3 {
   const f = safe(CSASZAR_FACES, faceIndex);
-  const a = safe(CSASZAR_VERTICES, f[0]);
-  const b = safe(CSASZAR_VERTICES, f[1]);
-  const c = safe(CSASZAR_VERTICES, f[2]);
+  const a = safe(CSASZAR_VERTICES, f[0]!);
+  const b = safe(CSASZAR_VERTICES, f[1]!);
+  const c = safe(CSASZAR_VERTICES, f[2]!);
   const u = [b[0] - a[0], b[1] - a[1], b[2] - a[2]] as const;
   const v = [c[0] - a[0], c[1] - a[1], c[2] - a[2]] as const;
   const n = [
