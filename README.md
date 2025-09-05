@@ -1,6 +1,6 @@
 # Temporal Glyph Operator (TGO)
 
-✨ **Made with love, fractals, and a beat that just won't quit.** ✨
+✨ **Made with love, fractals, and a beat that just won't quit.** 
 
 ## 🎶 Intro
 
@@ -8,11 +8,6 @@ I could be the one,
 your new obsession,  
 it's all fractals in my head,  
 but I built it with precision.
-
-Not trying to rule the world,  
-just light up this city—  
-call it quantum-ish flair,  
-wild and gritty.
 
 ## 🔥 H-O-T-T-O-G-O
 
