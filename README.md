@@ -50,6 +50,27 @@ npm run dev
 
 Then hit [http://localhost:3000](http://localhost:3000) and let the fractals flow.
 
+### 📊 Strategy Lab Demo (M5)
+
+Launch the Strategy Lab with live charts and divergence analysis:
+
+```bash
+pnpm -C apps/viewer dev --open --entry=src/main-strategy.tsx
+```
+
+Then run demo sweeps from the browser console:
+
+```javascript
+import { demoSweeps } from "@glyph/planner/src/experiments/console";
+await demoSweeps(async (job) => window.__TGO_PLANNER__.submit(job));
+```
+
+Watch live:
+- 📈 Strategy Means (bucketed) chart
+- 📊 Divergence vs Baseline (MSE) timeline  
+- 💾 Export CSV data
+- 🔍 Filter strategies and change baseline
+
 ## ❤️ Made With Love
 
 Every line of code, every canvas pixel, and every sparkline curve in TGO is made with:
