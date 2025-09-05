@@ -1,21 +1,7 @@
 // Single public surface — no star exports anywhere.
-export type {
-  Address,
-  FaceId,
-  ChildIndex,
-  ParsedAddress,
-} from "./addressing/hierarchy";
-
-export {
-  encodeAddress,
-  parseAddress,
-  jobIdToBaseFace,
-  faceIdToLabel,
-} from "./addressing/hierarchy";
-
+export type { Address, FaceId, ChildIndex, ParsedAddress } from "./addressing/hierarchy";
+export { encodeAddress, parseAddress, jobIdToBaseFace, faceIdToLabel } from "./addressing/hierarchy";
 export { encodePathToIndex } from "./addressing/path-index";
-
-// Exact Császár geometry (indices + helpers)
 export {
   CSASZAR_VERTICES,
   CSASZAR_FACES,
@@ -28,13 +14,7 @@ export {
   triangleAt,
   buildIndexed,
 } from "./geometry/csaszar";
-
-// Canonical geometry types
-export type {
-  Vec3T as Vec3,
-  TriIndices as TriIndex,
-  TriCoords,
-} from "./geometry/types";
+export type { Vec3T as Vec3, TriIndices as TriIndex, TriCoords } from "./geometry/types";
 
 export type Payload = { result: unknown; meta: Record<string, unknown> };
 

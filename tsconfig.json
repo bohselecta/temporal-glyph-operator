@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/address-mapper" },
+    { "path": "packages/glyph-drive" },
+    { "path": "packages/adapters" },
+    { "path": "packages/fractal-tape" },
+    { "path": "packages/viewer" },
+    { "path": "apps/viewer" }
+  ]
+}

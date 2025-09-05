@@ -1,20 +1,29 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["ES2022", "DOM"],
-    "module": "ESNext",
+    "target": "ES2022",
+    "module": "ES2022",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "strict": true,
+    "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true,
-    "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "allowJs": false,
+    "composite": true,
     "declaration": true,
-    "declarationMap": true,
-    "composite": true
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@glyph/*": ["packages/*/src"],
+      "@/*": [
+        "apps/viewer/src/*",
+        "packages/viewer/src/*"
+      ]
+    },
+    "types": [],
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ]
+  },
+  "include": ["packages", "apps", "docs", "scripts", "types", "vitest.setup.ts"]
 }
