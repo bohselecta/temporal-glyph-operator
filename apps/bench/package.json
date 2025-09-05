@@ -1,0 +1,20 @@
+{
+  "name": "@glyph/bench",
+  "version": "0.1.0",
+  "description": "Benchmark CLI for the Temporal Glyph Operator platform",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "private": true,
+  "type": "module",
+  "main": "cli.js",
+  "scripts": {
+    "start": "node cli.js",
+    "build": "echo 'No build needed - pure Node.js'"
+  },
+  "dependencies": {
+    "@glyph/kernels": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1"
+  }
+}

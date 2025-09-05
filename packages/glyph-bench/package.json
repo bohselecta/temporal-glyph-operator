@@ -1,0 +1,23 @@
+{
+  "name": "@glyph/glyph-bench",
+  "version": "0.1.0",
+  "description": "Benchmark harness for the Temporal Glyph Operator platform",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@glyph/kernels": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "typescript": "^5.6.3"
+  }
+}

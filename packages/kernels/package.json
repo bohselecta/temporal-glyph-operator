@@ -1,0 +1,20 @@
+{
+  "name": "@glyph/kernels",
+  "version": "0.1.0",
+  "description": "Computational kernels for the Temporal Glyph Operator platform",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

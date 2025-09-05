@@ -1,0 +1,6 @@
+i,expr,cpu_ms,tgo_e2e_ms,speedup,ts,host,cpu
+0,2^32,0.036,0.037,0.96,1757092538997,Compaq-Presario-G3500,Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+1,2^32,0.035,0.078,0.451,1757092539012,Compaq-Presario-G3500,Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+2,2^32,0.023,0.078,0.3,1757092539028,Compaq-Presario-G3500,Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+3,2^32,0.021,0.026,0.801,1757092539044,Compaq-Presario-G3500,Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+4,2^32,0.03,0.046,0.664,1757092539060,Compaq-Presario-G3500,Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz

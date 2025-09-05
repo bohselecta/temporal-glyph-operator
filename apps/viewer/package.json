@@ -25,6 +25,7 @@
     "@glyph/adapters": "0.1.0",
     "@glyph/address-mapper": "0.1.0",
     "@glyph/glyph-drive": "0.1.0",
+    "@glyph/kernels": "0.1.0",
     "zustand": "^5.0.8",
     "zod": "^4.1.5",
     "vite": "^5.0.2"
