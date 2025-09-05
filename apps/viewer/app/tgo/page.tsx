@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { TGOApp } from '@/components/tgo/TGOApp';
+import { TGOApp } from "../../../../src/components/tgo/TGOApp";
 
 export default function Page() {
   return (

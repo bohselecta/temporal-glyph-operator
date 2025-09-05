@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useTGOStore } from '@/state/tgoStore';
+import { useTGOStore } from "../../../../../src/state/tgoStore";
 
 const SQRT3 = Math.sqrt(3);
 const A = {x:0, y:0}, B={x:1, y:0}, C={x:.5, y:SQRT3/2};

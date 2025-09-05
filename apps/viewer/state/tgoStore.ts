@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { Scheduler, type FEG } from '@/lib/tgo/scheduler';
-import { pinReducerState, readPinnedState } from '@/lib/glyphTorus';
+import { Scheduler, type FEG } from "../../../src/lib/tgo/scheduler";
+import { pinReducerState, readPinnedState } from "../../../src/lib/glyphTorus";
 import { TapeAdapter } from '@glyph/adapters';
 import { drive } from '@glyph/glyph-drive';
 

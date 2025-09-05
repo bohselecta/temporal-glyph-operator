@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTGOStore } from '@/state/tgoStore';
+import { useTGOStore } from "../../../../../src/state/tgoStore";
 
 export function AnswerPanel() {
   const { answer, bounds } = useTGOStore();

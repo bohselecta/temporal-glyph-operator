@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { planFromPrompt } from '@/lib/tgo/planner';
-import { useTGOStore } from '@/state/tgoStore';
+import { planFromPrompt } from "../../../../../src/lib/tgo/planner";
+import { useTGOStore } from "../../../../../src/state/tgoStore";
 
 const EXAMPLES = [
   'pi 10e7',                 // Monte Carlo

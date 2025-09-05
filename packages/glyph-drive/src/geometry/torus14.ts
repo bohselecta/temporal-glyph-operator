@@ -60,9 +60,15 @@ export function split4(tri: Tri): Tri[] {
 function mid(a: Vec3, b: Vec3): Vec3 { return scale(add(a, b), 0.5); }
 
 /** Follow address path to get the triangle at a given depth. */
-export function triangleAt(addr: ParsedAddress, base: Tri[]): Tri {
+export function triangleAt(addr: import("../addressing/hierarchy").ParsedAddress, base: Tri[]): Tri {
   let tri = base[addr.face];
-  for (const c of addr.path) tri = split4(tri)[c];
+  if (!tri) throw new Error(`Invalid face index: ${addr.face}`);
+  for (const c of addr.path) {
+    const subdivided = split4(tri);
+    const nextTri = subdivided[c];
+    if (!nextTri) throw new Error(`Invalid child index: ${c}`);
+    tri = nextTri;
+  }
   return tri;
 }
 

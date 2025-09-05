@@ -68,7 +68,12 @@ function mid(a: number, b: number): number {
 export function triangleAt(addr: import("../addressing/hierarchy").ParsedAddress, base: Tri[]): Tri {
   let tri = base[addr.face];
   if (!tri) throw new Error(`Invalid face index: ${addr.face}`);
-  for (const c of addr.path) tri = loopSubdivide(tri)[c];
+  for (const c of addr.path) {
+    const subdivided = loopSubdivide(tri);
+    const nextTri = subdivided[c];
+    if (!nextTri) throw new Error(`Invalid child index: ${c}`);
+    tri = nextTri;
+  }
   return tri;
 }
 
