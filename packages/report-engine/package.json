@@ -1,0 +1,11 @@
+{
+  "name": "@glyph/report-engine",
+  "version": "0.1.0",
+  "description": "Evidence-based reporting, session recording, and research data export",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": { "build": "tsc -p tsconfig.json" }
+}

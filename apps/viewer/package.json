@@ -1,0 +1,21 @@
+{
+  "name": "@glyph/viewer",
+  "version": "0.1.0",
+  "description": "Next.js web interface for the Temporal Glyph Operator research platform",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000"
+  },
+  "dependencies": {
+    "next": "^14.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@glyph/core": "0.1.0",
+    "@glyph/proxy-operator": "0.1.0"
+  }
+}

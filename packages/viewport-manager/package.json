@@ -1,0 +1,12 @@
+{
+  "name": "@glyph/viewport-manager",
+  "version": "0.1.0",
+  "description": "Multi-viewport sampling strategies and ensemble analysis for fractal research",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": { "@glyph/core": "0.1.0", "@glyph/vision-kernel": "0.1.0" }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@glyph/core",
+  "version": "0.1.0",
+  "description": "Core fractal address system and frame bus for the Temporal Glyph Operator",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": { "build": "tsc -p tsconfig.json" }
+}

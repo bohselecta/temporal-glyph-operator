@@ -1,0 +1,16 @@
+{
+  "name": "@glyph/proxy-operator",
+  "version": "0.1.0",
+  "description": "Temporal event loop with adaptive cadence and intelligent reporting",
+  "author": "Hayden Lindley",
+  "license": "Temporal Glyph Operator License (Strict Proprietary)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": {
+    "@glyph/core": "0.1.0",
+    "@glyph/viewport-manager": "0.1.0",
+    "@glyph/report-engine": "0.1.0"
+  }
+}

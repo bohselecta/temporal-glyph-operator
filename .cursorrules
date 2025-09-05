@@ -1,0 +1,41 @@
+# Temporal Glyph Operator — Cursor Rules (Hard Constraints)
+
+1) **TypeScript STRICT**
+   - Do not disable `strict` flags. No `any`. No default exports in packages.
+   - All public APIs are typed and documented with TSDoc.
+
+2) **Purity in packages/**
+   - No DOM access, no timers, no console in `packages/*`.
+   - Only `apps/viewer` may touch browser APIs (canvas, window, performance).
+
+3) **API Stability**
+   - Do not change exported types or function signatures without updating tests and a CHANGELOG entry in the affected package.
+
+4) **Performance Budgets**
+   - `buildPyramid(levels≤6)` over a 512×512 frame completes in < **8ms average** on Node 20.
+   - Proxy report loop allocs < **2MB/sec** sustained in the viewer demo.
+   - No synchronous loops > 16ms on level-0 frames.
+
+5) **Dependencies**
+   - No new deps unless:
+     - zero native bindings,
+     - < 200KB installed size,
+     - OSI license (MIT/Apache-2/BSD). Add license URL in PR description.
+
+6) **Logging & Errors**
+   - No `console.*` in packages. Use return values, events, or error objects.
+   - Never swallow errors; surface via typed results or event `{ type:"error" }`.
+
+7) **Testing**
+   - Maintain ≥ **80%** statement coverage in `packages/*`.
+   - All PRs include unit tests for new code paths and edge cases.
+
+8) **Style**
+   - No mutation of function inputs. Prefer small pure functions. Split functions >60 LOC or cyclomatic >10.
+
+9) **Security**
+   - Never execute dynamic code from frames. No `eval`, `Function()`.
+   - Treat frame data as untrusted; validate widths/heights and buffer sizes.
+
+10) **Review Hints**
+    - If performance budgets regress, add a failing test first, then optimize.
