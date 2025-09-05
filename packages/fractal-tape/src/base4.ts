@@ -53,7 +53,7 @@ export function shuffleDigits(digits: string, seed: string, baseAddr: string, ti
   for (let i = result.length - 1; i > 0; i--) {
     hash = Math.imul(hash, 1103515245) + 12345;
     const j = Math.abs(hash) % (i + 1);
-    const temp = result[i];
+    const temp = result[i]!;
     result[i] = result[j]!;
     result[j] = temp;
   }
@@ -86,7 +86,7 @@ export function unshuffleDigits(digits: string, seed: string, baseAddr: string, 
   // Reverse the shuffle
   for (let i = indices.length - 1; i >= 0; i--) {
     const j = indices[i]!;
-    const temp = result[i + 1];
+    const temp = result[i + 1]!;
     result[i + 1] = result[j]!;
     result[j] = temp;
   }

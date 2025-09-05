@@ -42,8 +42,8 @@ export class TapeAdapter {
         await this.drive.attachPayload(encodedAddr as Address, payload);
         
         // Emit pinned event
-        this.observer.emit("pinned", { 
-          addr: encodedAddr, 
+                this.observer.emit("pinned", {
+          addr: encodedAddr as Address,
           payload 
         });
         

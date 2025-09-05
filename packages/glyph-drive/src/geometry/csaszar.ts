@@ -1,3 +1,5 @@
+import { safe } from "./util";
+
 export type Vec3 = readonly [number, number, number];
 export type Tri = readonly [number, number, number];
 
@@ -63,9 +65,10 @@ export function buildEdgeSet(faces: Tri[]): Set<string> {
 
 /** Centroid of a triangle face. */
 export function faceCentroid(faceIndex: number): Vec3 {
-  const f = CSASZAR_FACES[faceIndex];
-  if (!f) throw new Error(`Invalid face index: ${faceIndex}`);
-  const [a, b, c] = f.map(i => CSASZAR_VERTICES[i]!);
+  const f = safe(CSASZAR_FACES, faceIndex);
+  const a = safe(CSASZAR_VERTICES, f[0]);
+  const b = safe(CSASZAR_VERTICES, f[1]);
+  const c = safe(CSASZAR_VERTICES, f[2]);
   return [
     (a[0] + b[0] + c[0]) / 3,
     (a[1] + b[1] + c[1]) / 3,
@@ -75,9 +78,10 @@ export function faceCentroid(faceIndex: number): Vec3 {
 
 /** Normal vector of a triangle face (right-hand rule). */
 export function faceNormal(faceIndex: number): Vec3 {
-  const f = CSASZAR_FACES[faceIndex];
-  if (!f) throw new Error(`Invalid face index: ${faceIndex}`);
-  const [a, b, c] = f.map(i => CSASZAR_VERTICES[i]!);
+  const f = safe(CSASZAR_FACES, faceIndex);
+  const a = safe(CSASZAR_VERTICES, f[0]);
+  const b = safe(CSASZAR_VERTICES, f[1]);
+  const c = safe(CSASZAR_VERTICES, f[2]);
   const u = [b[0] - a[0], b[1] - a[1], b[2] - a[2]] as const;
   const v = [c[0] - a[0], c[1] - a[1], c[2] - a[2]] as const;
   const n = [
@@ -101,7 +105,9 @@ export function labelToFaceIndex(label: string): number {
 
 /** Loop-style 4-way triangle split compatible with addressing hierarchy. */
 export function loopSubdivide(tri: Tri): Tri[] {
-  const [a, b, c] = tri;
+  const a = tri[0]!;
+  const b = tri[1]!;
+  const c = tri[2]!;
   const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a);
   return [
     [a, ab, ca], // 0
@@ -120,7 +126,7 @@ function mid(a: Vec3, b: Vec3): Vec3 {
 }
 
 /** Follow address path to get the triangle at a given depth. */
-export function triangleAt(addr: ParsedAddress, base: Tri[]): Tri {
+export function triangleAt(addr: import("../addressing/hierarchy").ParsedAddress, base: Tri[]): Tri {
   let tri = base[addr.face];
   if (!tri) throw new Error(`Invalid face index: ${addr.face}`);
   for (const c of addr.path) {
@@ -131,7 +137,9 @@ export function triangleAt(addr: ParsedAddress, base: Tri[]): Tri {
 }
 
 export function centroid(tri: Tri): Vec3 {
-  const [a, b, c] = tri;
+  const a = tri[0]!;
+  const b = tri[1]!;
+  const c = tri[2]!;
   return [
     (a[0] + b[0] + c[0]) / 3,
     (a[1] + b[1] + c[1]) / 3,
