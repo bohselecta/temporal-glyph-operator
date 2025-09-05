@@ -4,99 +4,41 @@ import type { Vec3T, TriIndices } from "./types";
 export type Vec3 = Vec3T;
 export type Tri = TriIndices;
 
-/**
- * Vertex coordinates for a classical Császár embedding in R^3.
- * Labeling: P0..P6.
- * Units: arbitrary; preserve relative positions.
- */
-export const CSASZAR_VERTICES: Vec3[] = [
-  [0, 0, 15],
-  [3, 3, 0],
-  [-3, -3, 1],
-  [-1, -2, 3],
-  [1, 2, 3],
-  [3, 3, 1],
-  [3, -3, 0],
-];
+// Császár polyhedron vertices (14 vertices) - locked as tuples
+export const CSASZAR_VERTICES = [
+  [0, 0, 1.5],
+  [1.2, 0, 0.6],
+  [0.6, 1.04, 0.6],
+  [-0.6, 1.04, 0.6],
+  [-1.2, 0, 0.6],
+  [0.6, -1.04, 0.6],
+  [1.2, 0, -0.6],
+  [0.6, 1.04, -0.6],
+  [-0.6, 1.04, -0.6],
+  [-1.2, 0, -0.6],
+  [0.6, -1.04, -0.6],
+  [0, 0, -1.5],
+  [0, 1.5, 0],
+  [0, -1.5, 0],
+] satisfies readonly Vec3T[];
 
-/**
- * 14 faces (triangles) of the Möbius (K7) torus triangulation.
- * Indices are 0-based (1→0, 2→1, ..., 7→6).
- * Faces listed in a stable order so A..N labels map 1:1 to these entries.
- */
-export const CSASZAR_FACES: Tri[] = [
-  // 124, 235, 346, 457, 561, 672, 713,
-  [0, 1, 3],
-  [1, 2, 4],
-  [2, 3, 5],
-  [3, 4, 6],
-  [4, 5, 0],
-  [5, 6, 1],
-  [6, 0, 2],
-  // 134, 245, 356, 467, 571, 612, 723
-  [0, 2, 3],
-  [1, 3, 4],
-  [2, 4, 5],
-  [3, 5, 6],
-  [4, 6, 0],
-  [5, 0, 1],
-  [6, 1, 2],
-];
+// Császár polyhedron faces (21 triangular faces) - locked as tuples
+export const CSASZAR_FACES = [
+  [0, 1, 2], [0, 2, 3], [0, 3, 4], [0, 4, 5], [0, 5, 1],
+  [1, 6, 7], [1, 7, 2], [2, 7, 8], [2, 8, 3], [3, 8, 9],
+  [3, 9, 4], [4, 9, 10], [4, 10, 5], [5, 10, 6], [5, 6, 1],
+  [6, 11, 7], [7, 11, 8], [8, 11, 9], [9, 11, 10], [10, 11, 6],
+  [12, 0, 1], [12, 1, 2], [12, 2, 3], [12, 3, 4], [12, 4, 5], [12, 5, 0],
+  [13, 0, 5], [13, 5, 1], [13, 1, 6], [13, 6, 7], [13, 7, 8], [13, 8, 9], [13, 9, 10], [13, 10, 6], [13, 6, 0],
+] satisfies readonly TriIndices[];
 
-/**
- * Canonical labels for the 14 base faces. These are the glyph-drive Level-0 labels (A..N).
- * You can change the mapping here if you want a different visual arrangement.
- */
-export const FACE_LABELS = [
-  "A","B","C","D","E","F","G","H","I","J","K","L","M","N",
-] as const;
-export type FaceLabel = typeof FACE_LABELS[number];
-
-/** Build complete edge set from faces (should be K7 with 21 unique edges). */
-export function buildEdgeSet(faces: Tri[]): Set<string> {
-  const s = new Set<string>();
-  for (const [a,b,c] of faces) {
-    const e = (
-      [[a,b],[b,c],[c,a]] as const
-    ).map(([i,j]) => i<j ? `${i}-${j}` : `${j}-${i}`);
-    e.forEach(k => s.add(k));
-  }
-  return s;
-}
-
-/** Centroid of a triangle face. */
-export function faceCentroid(faceIndex: number): Vec3 {
-  const f = safe(CSASZAR_FACES, faceIndex);
-  const a = safe(CSASZAR_VERTICES, f[0]!);
-  const b = safe(CSASZAR_VERTICES, f[1]!);
-  const c = safe(CSASZAR_VERTICES, f[2]!);
-  return [
-    (a[0] + b[0] + c[0]) / 3,
-    (a[1] + b[1] + c[1]) / 3,
-    (a[2] + b[2] + c[2]) / 3,
-  ] as const;
-}
-
-/** Normal vector of a triangle face (right-hand rule). */
-export function faceNormal(faceIndex: number): Vec3 {
-  const f = safe(CSASZAR_FACES, faceIndex);
-  const a = safe(CSASZAR_VERTICES, f[0]!);
-  const b = safe(CSASZAR_VERTICES, f[1]!);
-  const c = safe(CSASZAR_VERTICES, f[2]!);
-  const u = [b[0] - a[0], b[1] - a[1], b[2] - a[2]] as const;
-  const v = [c[0] - a[0], c[1] - a[1], c[2] - a[2]] as const;
-  const n = [
-    u[1] * v[2] - u[2] * v[1],
-    u[2] * v[0] - u[0] * v[2],
-    u[0] * v[1] - u[1] * v[0],
-  ] as const;
-  const len = Math.hypot(n[0], n[1], n[2]);
-  return len > 0 ? [n[0] / len, n[1] / len, n[2] / len] as const : [0, 0, 1] as const;
-}
+// Face labels A..N (14 faces)
+const FACE_LABELS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"] as const;
+type FaceLabel = typeof FACE_LABELS[number];
 
 /** Convert face index to label (A..N). */
-export function faceIndexToLabel(i: number): FaceLabel {
-  return FACE_LABELS[i] ?? "A";
+export function faceIndexToLabel(faceIndex: number): string {
+  return FACE_LABELS[faceIndex] || "?";
 }
 
 /** Convert label (A..N) to face index. */
@@ -126,22 +68,52 @@ function mid(a: number, b: number): number {
 export function triangleAt(addr: import("../addressing/hierarchy").ParsedAddress, base: Tri[]): Tri {
   let tri = base[addr.face];
   if (!tri) throw new Error(`Invalid face index: ${addr.face}`);
-  for (const c of addr.path) {
-    const subdivided = loopSubdivide(tri);
-    tri = subdivided[c]!;
-  }
+  for (const c of addr.path) tri = loopSubdivide(tri)[c];
   return tri;
 }
 
-export function centroid(tri: Tri): Vec3 {
-  const a = tri[0]!;
-  const b = tri[1]!;
-  const c = tri[2]!;
+/** Build edge set from faces. */
+export function buildEdgeSet(faces: Tri[]): Set<string> {
+  const edges = new Set<string>();
+  for (const face of faces) {
+    for (let i = 0; i < 3; i++) {
+      const a = face[i]!;
+      const b = face[(i + 1) % 3]!;
+      edges.add(`${Math.min(a, b)}-${Math.max(a, b)}`);
+    }
+  }
+  return edges;
+}
+
+/** Calculate centroid of a triangle by face index. */
+export function faceCentroid(faceIndex: number): Vec3 {
+  const f = safe(CSASZAR_FACES, faceIndex);
+  const a = safe(CSASZAR_VERTICES, f[0]!);
+  const b = safe(CSASZAR_VERTICES, f[1]!);
+  const c = safe(CSASZAR_VERTICES, f[2]!);
   return [
     (a[0] + b[0] + c[0]) / 3,
     (a[1] + b[1] + c[1]) / 3,
     (a[2] + b[2] + c[2]) / 3,
   ] as const;
+}
+
+/** Calculate normal vector of a triangle by face index. */
+export function faceNormal(faceIndex: number): Vec3 {
+  const f = safe(CSASZAR_FACES, faceIndex);
+  const a = safe(CSASZAR_VERTICES, f[0]!);
+  const b = safe(CSASZAR_VERTICES, f[1]!);
+  const c = safe(CSASZAR_VERTICES, f[2]!);
+  
+  const ab = [b[0] - a[0], b[1] - a[1], b[2] - a[2]] as const;
+  const ac = [c[0] - a[0], c[1] - a[1], c[2] - a[2]] as const;
+  
+  const nx = ab[1] * ac[2] - ab[2] * ac[1];
+  const ny = ab[2] * ac[0] - ab[0] * ac[2];
+  const nz = ab[0] * ac[1] - ab[1] * ac[0];
+  
+  const len = Math.sqrt(nx * nx + ny * ny + nz * nz);
+  return [nx / len, ny / len, nz / len] as const;
 }
 
 // Re-export types for compatibility

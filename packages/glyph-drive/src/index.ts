@@ -2,18 +2,7 @@
 export type { Address, FaceId, ChildIndex, ParsedAddress } from "./addressing/hierarchy";
 export { encodeAddress, parseAddress, jobIdToBaseFace, faceIdToLabel } from "./addressing/hierarchy";
 export { encodePathToIndex } from "./addressing/path-index";
-export {
-  CSASZAR_VERTICES,
-  CSASZAR_FACES,
-  buildEdgeSet,
-  faceCentroid as centroid,
-  faceNormal,
-  loopSubdivide,
-  faceIndexToLabel,
-  labelToFaceIndex,
-  triangleAt,
-  buildIndexed,
-} from "./geometry/csaszar";
+export { CSASZAR_VERTICES, CSASZAR_FACES, triangleAt, buildEdgeSet, faceCentroid as centroid, faceNormal, loopSubdivide, buildIndexed } from "./geometry/csaszar";
 export type { Vec3T as Vec3, TriIndices as TriIndex, TriCoords } from "./geometry/types";
 
 export type Payload = { result: unknown; meta: Record<string, unknown> };
