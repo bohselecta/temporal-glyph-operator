@@ -15,6 +15,7 @@
     "paths": {
       "@glyph/*": ["packages/*/src"],
       "@/*": [
+        "__stubs__/*",
         "apps/viewer/src/*",
         "packages/viewer/src/*"
       ]
