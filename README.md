@@ -1,10 +1,5 @@
 # Temporal Glyph Operator (TGO)
 
-I could be the one,  
-your new obsession,  
-it's all fractals in my head,  
-but I built it with precision.
-
 Snap, clap, sample your frames  
 Raise your hands, watch motifs flame  
 Sparkline roll, convergence shows  
