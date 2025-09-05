@@ -1,4 +1,4 @@
-import { jobIdToBaseFace, encodeAddress } from "@glyph/glyph-drive";
+import { jobIdToBaseFace, encodeAddress, type Address } from "@glyph/glyph-drive";
 
 export function locate(jobId: string, depth = 0): `${string}:${number}${string}` {
   const face = jobIdToBaseFace(jobId);

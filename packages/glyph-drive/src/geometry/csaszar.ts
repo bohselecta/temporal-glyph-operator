@@ -166,12 +166,18 @@ export function buildIndexed(levels = 0) {
   
   for (let i = 0; i < current.length; i++) {
     const tri = current[i];
+    if (!tri) continue;
+    
     const baseIndex = positions.length / 3;
     
-    // Add vertices
-    positions.push(tri[0], tri[1], tri[2]);
-    positions.push(tri[3], tri[4], tri[5]);
-    positions.push(tri[6], tri[7], tri[8]);
+    // Add vertices from triangle indices
+    const v0 = safe(CSASZAR_VERTICES, tri[0]!);
+    const v1 = safe(CSASZAR_VERTICES, tri[1]!);
+    const v2 = safe(CSASZAR_VERTICES, tri[2]!);
+    
+    positions.push(v0[0], v0[1], v0[2]);
+    positions.push(v1[0], v1[1], v1[2]);
+    positions.push(v2[0], v2[1], v2[2]);
     
     // Add triangle indices
     indices.push(baseIndex, baseIndex + 1, baseIndex + 2);

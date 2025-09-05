@@ -13,6 +13,8 @@ export {
   faceIdToLabel,
 } from "./addressing/hierarchy";
 
+export { encodePathToIndex } from "./addressing/path-index";
+
 // Exact Császár geometry (indices + helpers)
 export {
   CSASZAR_VERTICES,
