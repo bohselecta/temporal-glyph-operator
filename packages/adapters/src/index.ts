@@ -1,5 +1,4 @@
-export * from "./types";
-export * from "./feq-to-drive";
-export * from "./determinism";
-export * from "./import";
-export * from "./tape-adapter";
+export { TapeAdapter } from "./tape-adapter";
+export { FEQToDriveAdapter } from "./feq-to-drive";
+export { LDJSONImporter } from "./import/ldjson";
+export type { Address, Payload, FEG, Observer } from "./types";

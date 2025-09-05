@@ -1,26 +1,44 @@
-// Addressing & Geometry exports
-export type { Address } from "./addressing/hierarchy";
+// Single public surface — no star exports anywhere.
+export type {
+  Address,
+  FaceId,
+  ChildIndex,
+  ParsedAddress,
+} from "./addressing/hierarchy";
+
+export {
+  encodeAddress,
+  parseAddress,
+  jobIdToBaseFace,
+  faceIdToLabel,
+} from "./addressing/hierarchy";
+
+export { encodePathToIndex } from "./addressing/path-index";
+
+// Exact Császár geometry (indices + helpers)
+export {
+  CSASZAR_VERTICES,
+  CSASZAR_FACES,
+  buildEdgeSet,
+  faceCentroid as centroid,
+  faceNormal,
+  loopSubdivide,
+  buildIndexed,
+} from "./geometry/csaszar";
+
+// Canonical geometry types
+export type {
+  Vec3T as Vec3,
+  TriIndices as TriIndex,
+  TriCoords,
+} from "./geometry/types";
+
 export type Payload = { result: unknown; meta: Record<string, unknown> };
 
 export interface GlyphDrive {
   attachPayload(addr: Address, payload: Payload): Promise<void> | void;
   emitBadge?(addr: Address, badge: string): void;
 }
-
-export { encodeAddress, parseAddress, jobIdToBaseFace, faceIdToLabel } from "./addressing/hierarchy";
-export type { Vec3, Tri, ParsedAddress } from "./geometry";
-export { 
-  CSASZAR_FACES, 
-  CSASZAR_VERTICES, 
-  triangleAt, 
-  centroid, 
-  faceCentroid, 
-  faceNormal,
-  buildEdgeSet,
-  faceIndexToLabel,
-  labelToFaceIndex,
-  loopSubdivide
-} from "./geometry";
 
 // Re-export key functions
 export { keyPermits, createKey, validateKey } from "./keys";

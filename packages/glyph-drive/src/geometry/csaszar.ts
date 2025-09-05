@@ -1,7 +1,8 @@
 import { safe } from "./util";
+import type { Vec3T, TriIndices } from "./types";
 
-export type Vec3 = readonly [number, number, number];
-export type Tri = readonly [number, number, number];
+export type Vec3 = Vec3T;
+export type Tri = TriIndices;
 
 /**
  * Vertex coordinates for a classical Császár embedding in R^3.
